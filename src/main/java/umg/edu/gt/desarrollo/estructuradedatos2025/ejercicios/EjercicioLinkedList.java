@@ -1,16 +1,44 @@
 package umg.edu.gt.desarrollo.estructuradedatos2025.ejercicios;
 
-public class EjercicioLinkedList {
-	
-	/** INSTRUCCIONES
- 	Escriba el algoritmo que resuelve el problema en esta clase.
-	Debe crear un package llamado umg.edu.gt.test.EjercicioLinkedList que corresponda al Test de esta clase.
-	Genere un Test por cada ejemplo y fuerce que uno de esos Test falle, puede implementar retornar un resultado
-	y compararlo con el esperado.
-	 */
-	
-	// Usando LinkedList de Java Collections, resuelva los siguientes problemas
-	// Problema 1: Dada una LinkedList<Integer>, escribir un método que elimine los valores duplicados, dejando solo la primera aparición de cada número.
-	// Problema 2: Implementar un método que invierta los elementos de una LinkedList<String> sin usar otra lista o ArrayList.
-	// Problema 3: Dadas dos listas enlazadas ordenadas de enteros, escribir un método que devuelva una nueva LinkedList<Integer> con los elementos de ambas listas intercalados en orden.
+package umg.edu.gt.test.EjercicioLinkedList;
+
+import org.junit.jupiter.api.Test;
+import umg.edu.gt.desarrollo.estructuradedatos2025.ejercicios.EjercicioLinkedList;
+
+import java.util.LinkedList;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class EjercicioLinkedListTest {
+
+    @Test
+    public void testEliminarDuplicados() {
+        LinkedList<Integer> lista = new LinkedList<>(Arrays.asList(1, 2, 2, 3, 4, 4, 5));
+        LinkedList<Integer> resultadoEsperado = new LinkedList<>(Arrays.asList(1, 2, 3, 4, 5));
+        assertEquals(resultadoEsperado, EjercicioLinkedList.eliminarDuplicados(lista));
+    }
+
+    @Test
+    public void testInvertirLinkedList() {
+        LinkedList<String> lista = new LinkedList<>(Arrays.asList("A", "B", "C", "D"));
+        LinkedList<String> resultadoEsperado = new LinkedList<>(Arrays.asList("D", "C", "B", "A"));
+        assertEquals(resultadoEsperado, EjercicioLinkedList.invertirLinkedList(lista));
+    }
+
+    @Test
+    public void testIntercalarListasOrdenadas() {
+        LinkedList<Integer> lista1 = new LinkedList<>(Arrays.asList(1, 3, 5));
+        LinkedList<Integer> lista2 = new LinkedList<>(Arrays.asList(2, 4, 6));
+        LinkedList<Integer> resultadoEsperado = new LinkedList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        assertEquals(resultadoEsperado, EjercicioLinkedList.intercalarListasOrdenadas(lista1, lista2));
+    }
+
+    @Test
+    public void testIntercalarListasOrdenadasConFalla() {
+        LinkedList<Integer> lista1 = new LinkedList<>(Arrays.asList(1, 3, 5));
+        LinkedList<Integer> lista2 = new LinkedList<>(Arrays.asList(2, 4, 6));
+        LinkedList<Integer> resultadoEsperado = new LinkedList<>(Arrays.asList(1, 2, 3, 4, 6, 5)); // Resultado incorrecto para forzar la falla
+        assertEquals(resultadoEsperado, EjercicioLinkedList.intercalarListasOrdenadas(lista1, lista2));
+    }
 }
